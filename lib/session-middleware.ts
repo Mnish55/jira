@@ -28,8 +28,8 @@ type AditionalContext = {
 
 export const sessionMiddleware = createMiddleware<AditionalContext>(async (c, next) => {
     const client = new Client()
-     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
+     .setEndpoint("https://cloud.appwrite.io/v1")
+     .setProject("672731ec0023b4f444d9")
 
      const session = getCookie(c, AUTH_COOKIE)
 

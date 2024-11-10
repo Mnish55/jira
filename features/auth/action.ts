@@ -7,8 +7,8 @@ import { Account, Client } from "node-appwrite"
 export const getCurrentUser = async () => {
     try {
     const client = new Client()
-     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
+     .setEndpoint("https://cloud.appwrite.io/v1")
+     .setProject("672731ec0023b4f444d9")
      
      const cookieStore = await cookies()
      const session = await cookieStore.get(AUTH_COOKIE)
