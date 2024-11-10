@@ -19,7 +19,7 @@ export const useCreateWorkspace = () => {
             queryClient.invalidateQueries({ queryKey: ["workspaces"] })
         },
         onError: (error) => {
-            console.error("Error response:", error);
+            console.log("Error response:", error);
             throw new Error("Something went wrong");
         },
     })
