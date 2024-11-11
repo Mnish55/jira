@@ -6,9 +6,23 @@ import { ID } from "node-appwrite";
 import { deleteCookie, setCookie } from "hono/cookie";
 import { AUTH_COOKIE } from "../constants";
 import { sessionMiddleware } from "@/lib/session-middleware";
+import { cors } from 'hono/cors'
 
 
 const app = new Hono()
+   .use('/api/*', cors())
+   .use(
+  '/login',
+  cors({
+    origin: 'https://urban-barnacle-x6xq669w76hp975-3000.app.github.dev',
+    allowHeaders: ['X-Custom-Header', 'Upgrade-Insecure-Requests'],
+    allowMethods: ['POST', 'GET', 'OPTIONS'],
+    exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
+    maxAge: 600,
+    credentials: true,
+  })
+)
+
   .get("/current", sessionMiddleware, async (c) => {
     const user = c.get("user")
     return c.json({data: user})

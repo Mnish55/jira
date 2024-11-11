@@ -1,5 +1,5 @@
 import { AppType } from '@/app/api/[[...route]]/route'
 import { hc } from 'hono/client'
 
-export const client = hc<AppType>("https://3000-mnish55-jira-obq1g8rd2mu.ws-us116.gitpod.io")
+export const client = hc<AppType>("https://urban-barnacle-x6xq669w76hp975-3000.app.github.dev")
 
