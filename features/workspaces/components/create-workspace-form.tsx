@@ -11,14 +11,16 @@ import { useCreateWorkspace } from "../api/use-create-workspace"
 import { useRef } from "react"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Image from "next/image"
-import { ImageIcon } from "lucide-react"
+import { ImageIcon, Router } from "lucide-react"
 import { createWorkspaceSchema } from "../schema"
+import { useRouter } from "next/navigation"
 
 interface CreateWorkspacesFormProps {
     onCancel?: () => void
 }
 
 export const CreateWorkspacesForm = ({ onCancel }: CreateWorkspacesFormProps) => {
+    const router = useRouter()
     const { mutate } = useCreateWorkspace()
     const inputRef = useRef<HTMLInputElement>(null)
     const form = useForm<z.infer<typeof createWorkspaceSchema>>({
@@ -34,7 +36,13 @@ export const CreateWorkspacesForm = ({ onCancel }: CreateWorkspacesFormProps) =>
             ...values,
             image: values.image instanceof File ? values.image : ""
         }
-        mutate({ form: finalValues })
+        mutate({ form: finalValues }, {
+            onSuccess: ({data}) => {
+                form.reset()
+                router.push(`/workspaces/${data.id}`)
+            }
+        }
+        )
         
     }
     

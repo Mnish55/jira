@@ -25,8 +25,8 @@ const app = new Hono()
     const workspaceIds = members.documents.map((member) => member.workspaceId)
 
     const workspaces = await databases.listDocuments(
-      DATABASE_ID,
-      COLLECTION_ID,
+      "672a453b0002c6ff7acd",
+      "672a45850036b55c5887",
       [Query.contains("$id", workspaceIds)]
     )
 
@@ -61,8 +61,8 @@ const app = new Hono()
 
 
       const workspace = await databases.createDocument(
-        DATABASE_ID,
-        COLLECTION_ID,
+        "672a453b0002c6ff7acd",
+        "672a45850036b55c5887",
         ID.unique(),
         {
            name,
